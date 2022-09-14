@@ -1,0 +1,2 @@
+C:\Users\riyav\source\repos\angularproject1\obj\Debug\angularproject1.esproj.SuggestedBindingRedirects.cache
+C:\Users\riyav\source\repos\angularproject1\obj\Debug\angularproject1.esproj.CoreCompileInputs.cache
