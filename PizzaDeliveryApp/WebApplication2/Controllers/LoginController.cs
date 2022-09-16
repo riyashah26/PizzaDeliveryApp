@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.VisualBasic;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication2.Controllers
 {
@@ -25,32 +27,43 @@ namespace WebApplication2.Controllers
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
         public readonly LoginContext _context;
-        public LoginController(IConfiguration configuration, IWebHostEnvironment env)
+        public LoginController(IConfiguration configuration, IWebHostEnvironment env,LoginContext context)
         {
             _configuration = configuration;
             _env = env;
+            _context = context; 
         }
         [HttpPost("LoginDetails")]
         public IActionResult LoginDetails(Login login ) 
         {
             //_context.Login.Where(l=>l.emailId)
             try
-            {
-                if (_context.Logins != null)
+            {//if(_context.Login.Where(l => l.emailId.ToLower() == login.emailId.ToLower()).FirstOrDefault() != null)
+                if (_context.Login.Where(l => l.emailId.ToLower() == login.emailId.ToLower()).FirstOrDefault() != null) {
 
+                    return new JsonResult(new { statusCode = "400", errorMsg = "EmailId already exists" });
+                }
+                else
                 {
-                    _context.Logins.Add(login);
-                    _context.SaveChanges();
-                    return Ok("Added successfully");
+                    if (_context.Login != null)
+                    {
+                        _context.Login.Add(login);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        return new JsonResult(new { statusCode = "400", errorMsg = "Error in saving results" });
+                    }
+                 
                 }
             }
             catch (Exception e)
-            {
-                return (IActionResult)e.GetType();
+            {   
+                return new JsonResult(new { statusCode = "400" ,message = e.Message });
             }
-    
 
-            return new JsonResult("Added Successfully");
+
+            return new JsonResult(new{ statusCode= "200",message = "Added Successfully"});
         }
 
     }

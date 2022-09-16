@@ -1,0 +1,23 @@
+
+<div class="img-txt">
+  <div class="content">
+  <h2 >{{dataFromMenuPage[0].name}}</h2>
+  <div *ngFor="let pizzaSelect of productList">
+    <div class="spacer">
+      <img [src]="pizzaSelect.src" />
+      <div> {{pizzaSelect.name}}</div>
+      <div>$ {{pizzaSelect.price}}</div>
+      <div> {{pizzaSelect.ingredients}}</div>
+      Size:
+      <input type="radio" name="size" value="Small"  checked  (change)="onRadioChange(1)">Small
+      <input type="radio" name="size" value="Medium"   (change)="onRadioChange(2)">Medium
+      <input type="radio" name="size" value="Large"   (change)="onRadioChange(3)">Large
+      <br />
+      <button (click)="addItemToCart(pizzaSelect, 1)">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+  </div>
+</div>

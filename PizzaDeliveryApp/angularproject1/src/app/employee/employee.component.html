@@ -1,0 +1,66 @@
+
+<div class="text-center">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" novalidate class="d-flex-center">
+    <div class="example-container">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="FirstName" formControlName="firstName">
+          <mat-error *ngIf="!employeeForm.get('firstName')?.errors?.required && (employeeForm.get('firstName')?.errors?.pattern)">
+            Please enter a first name
+          </mat-error>
+          <mat-error *ngIf="employeeForm.get('firstName')?.invalid && (employeeForm.get('firstName')?.dirty || employeeForm.get('firstName')?.touched) && employeeForm.get('firstName')?.errors?.required">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="LastName" formControlName="lastName">
+          <mat-error *ngIf="!employeeForm.get('lastName')?.errors?.required && (employeeForm.get('lastName')?.errors?.pattern)">
+            Please enter a last name
+          </mat-error>
+          <mat-error *ngIf="employeeForm.get('lastName')?.invalid && (employeeForm.get('lastName')?.dirty || employeeForm.get('lastName')?.touched) && employeeForm.get('lastName')?.errors?.required">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="emailId">
+          <mat-error *ngIf="!employeeForm.get('emailId')?.errors?.required && (employeeForm.get('emailId')?.errors?.pattern)">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="employeeForm.get('emailId')?.invalid && (employeeForm.get('emailId')?.dirty || employeeForm.get('emailId')?.touched) && employeeForm.get('emailId')?.errors?.required">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="mt-top-2">
+        <mat-form-field>
+          <input matInput placeholder="Contact" formControlName="contact">
+          <mat-error *ngIf="!employeeForm.get('contact')?.errors?.required">
+            Contant number must be between 0 - 9 and total 10 digits.
+          </mat-error>
+          <mat-error *ngIf="employeeForm.get('contact')?.invalid && (employeeForm.get('contact')?.dirty || employeeForm.get('contact')?.touched) && employeeForm.get('contact')?.errors?.required">
+            Contact Number is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Salary" formControlName="salary">
+          <mat-error *ngIf="!employeeForm.get('salary')?.errors?.required && (employeeForm.get('salary')?.errors?.pattern)">
+            Please enter a hourly salary of the employee
+          </mat-error>
+          <mat-error *ngIf="employeeForm.get('salary')?.invalid && (employeeForm.get('salary')?.dirty || employeeForm.get('salary')?.touched) && employeeForm.get('salary')?.errors?.required">
+            Salary is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="mt-top">
+        <button [disabled]="!employeeForm.valid" mat-raised-button color="primary" mat-button>Sign In</button>
+      </div>
+    </div>
+  </form>
+</div>
+

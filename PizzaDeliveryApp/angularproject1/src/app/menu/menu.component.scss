@@ -1,0 +1,68 @@
+.text-center{
+    text-align: center;
+}
+.example-container{
+    height: 50%;
+    width: 20%;
+    text-align: left;
+}
+.d-flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mat-form-field{
+    width: 100%;
+}
+.mt-top{
+    margin-top: 30px;
+}
+.mt-top-2{
+    margin-top: 10px;
+}
+:host {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  // change the second "1fr" to "auto"
+  grid-column-gap: 10px;
+}
+
+div:nth-child(1) {
+  font-weight: bold;
+}
+.img-text {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+/*.photo,
+.content {
+  display: table-cell;
+  vertical-align: middle;
+  width: 60%;
+  padding: 15px;
+
+}*/
+
+/*.photo {
+  width: 40%;
+}*/
+
+.photo img {
+  max-width: 100%;
+  height: auto;
+}
+.column {
+  float: left;
+  width: 15.33%;
+  padding: 15px;
+}
+
+/* Clear floats after image containers */
+/*.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}*/
+

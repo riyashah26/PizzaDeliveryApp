@@ -1,20 +1,4 @@
-//import { HttpClientModule } from '@angular/common/http';
-//import { NgModule } from '@angular/core';
-//import { BrowserModule } from '@angular/platform-browser';
 
-//import { AppComponent } from './app.component';
-
-//@NgModule({
-//  declarations: [
-//    AppComponent
-//  ],
-//  imports: [
-//    BrowserModule, HttpClientModule
-//  ],
-//  providers: [],
-//  bootstrap: [AppComponent]
-//})
-//export class AppModule { }
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +10,10 @@ import { SharedService } from './shared.service';
 
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
+import { MenuComponent } from './menu';
+import { OrderComponent } from './order';
+import { CartComponent } from './cart';
+import { EmployeeComponent } from './employee';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -36,7 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    OrderComponent,
+    CartComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,

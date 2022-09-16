@@ -15,6 +15,6 @@ namespace WebApplication2.Models
         //public LoginContext(DbContextOptions  options) :base(options) 
         //{
         //}
-        public DbSet<Login>? Logins { get; set; }
+        public DbSet<Login>? Login { get; set; }
     }
 }

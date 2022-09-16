@@ -11,8 +11,5 @@ export class AppComponent {
 
 }
   title = 'PizzaDeliveryApp';
-  // clickEvent() {
-  //   console.log("CLICL EVENT")
-  //   this.router.navigateByUrl('../loginForm');
-  // }
+  countCart() { }
 }
