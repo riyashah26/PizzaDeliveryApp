@@ -26,10 +26,10 @@
   // change the second "1fr" to "auto"
   grid-column-gap: 10px;
 }
-
+/*
 div:nth-child(1) {
   font-weight: bold;
-}
+}*/
 .img-text {
   width: 100%;
   display: table;
@@ -57,6 +57,11 @@ div:nth-child(1) {
   float: left;
   width: 15.33%;
   padding: 15px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 /* Clear floats after image containers */

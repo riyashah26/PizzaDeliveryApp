@@ -1,6 +1,5 @@
-
 <div class="text-center">
-  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" novalidate class="d-flex-center">
+  <form [formGroup]="employeeForm" (ngSubmit)="addEmployeeDetails()" novalidate class="d-flex-center">
     <div class="example-container">
       <div>
         <mat-form-field>
@@ -37,11 +36,11 @@
       </div>
       <div class="mt-top-2">
         <mat-form-field>
-          <input matInput placeholder="Contact" formControlName="contact">
-          <mat-error *ngIf="!employeeForm.get('contact')?.errors?.required">
+          <input matInput placeholder="Contact" formControlName="contactDetails">
+          <mat-error *ngIf="!employeeForm.get('contactDetails')?.errors?.required">
             Contant number must be between 0 - 9 and total 10 digits.
           </mat-error>
-          <mat-error *ngIf="employeeForm.get('contact')?.invalid && (employeeForm.get('contact')?.dirty || employeeForm.get('contact')?.touched) && employeeForm.get('contact')?.errors?.required">
+          <mat-error *ngIf="employeeForm.get('contactDetails')?.invalid && (employeeForm.get('contactDetails')?.dirty || employeeForm.get('contactDetails')?.touched) && employeeForm.get('contactDetails')?.errors?.required">
             Contact Number is required
           </mat-error>
         </mat-form-field>
@@ -50,7 +49,7 @@
         <mat-form-field>
           <input matInput placeholder="Salary" formControlName="salary">
           <mat-error *ngIf="!employeeForm.get('salary')?.errors?.required && (employeeForm.get('salary')?.errors?.pattern)">
-            Please enter a hourly salary of the employee
+            Please enter only digits.
           </mat-error>
           <mat-error *ngIf="employeeForm.get('salary')?.invalid && (employeeForm.get('salary')?.dirty || employeeForm.get('salary')?.touched) && employeeForm.get('salary')?.errors?.required">
             Salary is required
@@ -63,4 +62,41 @@
     </div>
   </form>
 </div>
+<p class="text-center fs-3" [ngClass]="isAccountCreated ? 'text-success pb-1' : 'text-danger pb-1'">{{displayMsg}}</p>
+
+<div class="img-txt">
+  <div class="content">
+    <h2 *ngIf ="employeeList">Employee List</h2>
+    <div>
+      <div class="spacer">
+        <table style="width:100%">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Salary</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+          </tr>
+          <tbody>
+            <tr *ngFor="let employee of employeeList">
+              <td> {{employee.firstName}} </td>
+              <td> {{employee.lastName}} </td>
+              <td> {{employee.emailId}} </td>
+              <td> {{employee.contactDetails}} </td>
+              <td> {{employee.salary}} </td>
+              <td> <a href="#">EDIT</a> </td>
+              <td> <a href="#" (click) =" delete(employee.empId)">DELETE</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 

@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
         });
 });
 builder.Services.AddControllers();
-builder.Services.AddDbContext<WebApplication2.Models.LoginContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
+builder.Services.AddDbContext<WebApplication2.Models.AppDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnStr")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

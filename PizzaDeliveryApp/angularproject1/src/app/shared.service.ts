@@ -61,7 +61,7 @@ export class SharedService {
   }
   //employee
   getEmployees(): Observable<any> {
-    return this.http.get(this.APIUrl + 'employee').pipe(
+    return this.http.get(this.APIUrl + 'Employee/getEmployeesList').pipe(
       catchError(err => this.catchAuthError(err)));
   }
 
@@ -84,8 +84,8 @@ export class SharedService {
   }
 
   // DELETE - delete an employee
-  deleteEmployee(id: number): Observable<{}> {
-    return this.http.delete(this.APIUrl + 'Employee/deleteEmployeeDetails' + id, { responseType: 'json' }).pipe(
+  deleteEmployee(empId: number): Observable<any> {
+    return this.http.delete<any>(this.APIUrl + 'Employee/deleteEmployeeDetails' + empId, { responseType: 'json' }).pipe(
       catchError(err => this.catchAuthError(err)));
   }
 

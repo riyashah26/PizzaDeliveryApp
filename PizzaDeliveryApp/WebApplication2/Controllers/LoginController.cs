@@ -26,8 +26,8 @@ namespace WebApplication2.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
-        public readonly LoginContext _context;
-        public LoginController(IConfiguration configuration, IWebHostEnvironment env,LoginContext context)
+        public readonly AppDBContext _context;
+        public LoginController(IConfiguration configuration, IWebHostEnvironment env,AppDBContext context)
         {
             _configuration = configuration;
             _env = env;

@@ -36,12 +36,8 @@ export class LoginComponent implements OnInit {
   addloginDetails() {
     if (this.loginForm.valid) {
 
-      var loginDetails = {
-        emailId: this.loginForm.value.emailId,
-        password: this.loginForm.value.password
-      }
-      return this.sharedService.loginDetails(loginDetails).subscribe(res => {
-        console.log("AAAA"+res);
+      return this.sharedService.loginDetails(this.loginForm.value).subscribe(res => {
+   
         if (res.statusCode == "200") {
           this.displayMsg = "Login successful";
           this.isAccountCreated = true;

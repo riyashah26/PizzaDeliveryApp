@@ -2971,7 +2971,6 @@
       "Microsoft.AspNet.Cors >= 5.2.9",
       "Microsoft.AspNetCore.Cors >= 2.1.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.8",
-      "Microsoft.EntityFrameworkCore >= 6.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.8",
@@ -3030,10 +3029,6 @@
             "version": "[2.1.0, )"
           },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[6.0.8, )"
-          },
-          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.8, )"
           },

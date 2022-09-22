@@ -17,12 +17,14 @@ export class EmployeeComponent implements OnInit {
   res: any;
   employee: any;
   id!: number;
-  detailedEmployee: any;
- 
+  employeeList: any;
+  displayMsg: string = "";
+  isAccountCreated: boolean = false;
+
 
   constructor(
     private sharedService: SharedService,
-    private route: ActivatedRoute
+    private router: Router
   ) {
     this.employeeForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
@@ -30,42 +32,90 @@ export class EmployeeComponent implements OnInit {
       emailId: new FormControl('', [Validators.required, Validators.email, Validators.pattern(
         '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$',
       ),]),
-      contact: new FormControl('', [Validators.required, Validators.pattern(
-      '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+      contactDetails: new FormControl('', [Validators.required, Validators.pattern(
+        '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
       ),]),
-       salary: new FormControl('', [Validators.required]),     
+      salary: new FormControl('', [Validators.required, Validators.pattern(
+        '^[0-9]*$'
+      )]),
     });
-}
+  }
 
   ngOnInit() {
+    this.sharedService.getEmployees()
+      .subscribe(employee => {
+        this.employeeList = employee;
+        //this.router.navigate(['/employeeList']);
+      }, error => {
+        console.error('errorMsg', error);
+        this.displayMsg = "Something went wrong";
+        this.isAccountCreated = true;
+      });
     //const id = this.route.snapshot.paramMap.get('id');
     //this.sharedService.getEmployee(this.id).subscribe(employee => this.employee = employee);
   }
   delete(id: number) {
-    this.sharedService
-      .deleteEmployee(id)
-      .subscribe(() => {
-        this.employee = this.employee.filter((emp: { id: number; }) => emp.id !== id)
-               // success message or error message
+    return this.sharedService.deleteEmployee(id).subscribe(res => {
+        if (res.statusCode == "200") {
+          this.displayMsg = "Employee added successfully";
+          this.isAccountCreated = true;
+          this.sharedService.getEmployees()
+            .subscribe(employee => {
+              this.employeeList = employee;
+              this.router.navigate(['/employeeList']);
+            }, error => {
+              console.error('errorMsg', error);
+              this.displayMsg = "Something went wrong";
+              this.isAccountCreated = true;
+            });
+        }
+        else {
+          this.displayMsg = res.errorMsg;
+          this.isAccountCreated = true;
+        }
+      }, error => {
+        console.error('errorMsg', error);
+        this.displayMsg = "Something went wrong";
+        this.isAccountCreated = true;
       })
   }
 
   getDetails(id: number) {
     this.sharedService
       .getEmployee(id)
-      .subscribe(employee => this.detailedEmployee = employee);
-  }
-  onSubmit() {
-    // add id field to formValues object
-    /*let id = this.route.snapshot.paramMap.get('id');*/
-    //this.employeeForm.id = id;
-    //this.employeeForm.EmployeeTypeId = this.employeeForm.EmployeeTypeId;
-    this.sharedService
-      .addEmployee(this.employeeForm)
-      .subscribe(() => {
-       // success message or error message
-      })
+      .subscribe(employee => this.employeeList = employee);
   }
 
+  addEmployeeDetails() {
+    if (this.employeeForm.valid) {
+      return this.sharedService.addEmployee(this.employeeForm.value)
+        .subscribe(res => {   
+          if (res.statusCode == "200") {
+            this.displayMsg = "Employee added successfully";
+            this.isAccountCreated = true;
+            this.sharedService.getEmployees()
+              .subscribe(employee => {
+                this.employeeList = employee;
+                this.router.navigate(['/employeeList']);
+              }, error => {
+          console.error('errorMsg', error);
+          this.displayMsg = "Something went wrong";
+          this.isAccountCreated = true;
+        });
+          }
+          else {
+            this.displayMsg = res.errorMsg;
+            this.isAccountCreated = true;
+          }
+        }, error => {
+          console.error('errorMsg', error);
+          this.displayMsg = "Something went wrong";
+          this.isAccountCreated = true;
+        });
+    }
 
+    else {
+      return "Please fill the employee details form"
+    }
+  }
 }

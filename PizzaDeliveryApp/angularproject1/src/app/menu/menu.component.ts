@@ -24,12 +24,7 @@ export class MenuComponent implements OnInit {
     }
   
   ]
-  // productList = [
-  //   {
-  //     name: 'Chicago Pizza', price: '$30',src: 'assets/images/offers.jfif',ingredients : "Cheese Dip,Jalapeno,Onion"},
-  //   { name: 'New York-Style Pizza', price: '$30',src: 'assets/images/offers.jfif', ingredients: "Marinara,Mushroom,Green Peppers" },
-  //   { name: ' Greek Pizza', price: '$20', src: 'assets/images/offers.jfif', ingredients: "Thin Crust ,Jalapeno,Onion,Zuccini,Bell Peppers" }
-  //];
+
    cartProductList: any[] = [];
   
     
